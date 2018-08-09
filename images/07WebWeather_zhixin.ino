@@ -15,11 +15,11 @@
 #define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
 U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);
-char auth[] = "4c77138d712c48d7a6f922cf*****";//授权码
+char auth[] = "4c77138d712c48d7a6f922cf3d7246ed";//授权码
 char ssid[] = "Maker Space";//wifi名称
 char pass[] = "20140811";//wifi密码
 String host = "api.seniverse.com";
-String APIKEY = "wactucc9u*****"; //心知天气API
+String APIKEY = "wactucc9uyjz6lq7"; //心知天气API
 String city = "Hangzhou";
 String language = "en";
 String  daily_json;
@@ -277,7 +277,7 @@ void setup()
   Serial.begin(9600);
   u8g2.begin();
   // u8g2.setDisplayRotation(U8G2_R2);//调整屏幕显示方向
-  Blynk.begin(auth, ssid, pass);//自建服务器ip模式
+  Blynk.begin(auth, ssid, pass, IPAddress(116, 62, 49, 166), 8080);//自建服务器ip模式
   Blynk.virtualWrite(V2, "https://" + host + "/v3/weather/daily.json?key=" + APIKEY + "&location=" + city + "&language=en&unit=c&start=0&days=5");
   setSyncInterval(10 * 60); // 设置同步间隔时间，10分钟
   attachInterrupt(digitalPinToInterrupt(0), displaySwitch, RISING);
@@ -291,3 +291,7 @@ void loop()
   Blynk.run();
   timer.run();
 }
+
+
+
+
