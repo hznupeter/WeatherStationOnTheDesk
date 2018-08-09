@@ -1,6 +1,6 @@
 /*************************************************************
   项目说明：使用webHook获取心知天气数据
-  App项目设置:创建WebHook组件，设置V2管脚
+  App项目设置:创建WebHook组件，设置V0管脚
 *************************************************************/
 #define BLYNK_PRINT Serial
 #include <ESP8266WiFi.h>
@@ -11,19 +11,19 @@
 #include <U8g2lib.h>
 #include <Wire.h>
 #include <DHT.h>
-#define DHTPIN 2//传感器连接管脚
-#define DHTTYPE DHT11     // DHT 11
+#define DHTPIN 2//DHT11传感器连接管脚
+#define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
 U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);
-char auth[] = "4c77138d712c48d7a6f922cf******";//授权码
+char auth[] = "4c77138d712c48d7a6f922cf*****";//授权码
 char ssid[] = "ssid";//wifi名称
 char pass[] = "pass";//wifi密码
 String host = "api.seniverse.com";
-String APIKEY = "wactucc9uyj******"; //心知天气API
+String APIKEY = "wactucc9u*****"; //心知天气API
 String city = "Hangzhou";
 String language = "en";
 String  daily_json;
-int Humidity, Temperature;
+int Humidity, Temperature, show_daily_count = 0;
 BlynkTimer timer;
 
 struct daily_data {//气象信息结构体
@@ -32,7 +32,7 @@ struct daily_data {//气象信息结构体
   int temp_high;//最高温度
   int temp_low;//最低温度
 };
-struct daily_data  today, tomorrow, tomorrow2;
+struct daily_data  today, tomorrow, tomorrow2;//初始化结构体，今天，明天，后天
 
 static unsigned char week1[] = {//日
   0x00, 0x00, 0xFE, 0x03, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0xFE, 0x03, 0x02, 0x02, 0x02, 0x02,
@@ -143,7 +143,8 @@ void showIcon(int code, int x, int y) //显示天气图标函数
   }
 }
 void showWeekday(int weekday, int x, int y) //显示星期中文字函数
-{ switch (weekday) {//中文显示星期
+{
+  switch (weekday) {//中文显示星期
     case 1:
       u8g2.drawXBM(x, y, 12, 12, week1);
       break;
@@ -192,7 +193,7 @@ BLYNK_WRITE(V2)
   tomorrow2.temp_high = obj["results"][0]["daily"][2]["high"];//获取后天天气温度
   tomorrow2.temp_low = obj["results"][0]["daily"][2]["low"];//获取后天天气温度
 }
-void nowDisplay()//显示当前时间和气温
+void clockDisplay()//显示时间及当前温湿度
 {
   u8g2.setFontPosTop();
   u8g2.clearBuffer();
@@ -204,11 +205,10 @@ void nowDisplay()//显示当前时间和气温
   currentTime += (hour() < 10) ? "0" + String(hour()) : String(hour());
   currentTime += (minute() < 10) ? ":0" + String(minute()) : ":" + String(minute());
   currentTime += (second() < 10) ? ":0" + String(second()) : ":" + String(second());
-
   String currentDate = String(year());
   currentDate += (month() < 10) ? "-0" + String(month()) : "-" + String(month());
   currentDate += (day() < 10) ? "-0" + String(day()) : "-" + String(day());
- // u8g2.drawFrame(0, 0, 128, 64);//画框
+  // u8g2.drawFrame(0, 0, 128, 64);//画框
   u8g2.setFont(u8g2_font_timR14_tr);
   u8g2.setCursor(20, 6);
   u8g2.print(String(Humidity) + "% " + String(Temperature) + "C"); //显示当前温湿度
@@ -222,24 +222,22 @@ void nowDisplay()//显示当前时间和气温
   showWeekday(weekday(), 95, 50); //显示当前星期
   u8g2.sendBuffer();
 }
-void dailyDisplay()//显示天气预报
+
+void dailyDisplay()//显示预报数据
 {
+  show_daily_count++;
   u8g2.setFontPosTop();
   u8g2.clearBuffer();
-
   u8g2.drawHLine(0, 18, 128);//水平分割线
   u8g2.drawVLine(42, 18, 64);//第一条竖直分割线
   u8g2.drawVLine(85, 18, 64);//第二条竖直分割线
-
   u8g2.drawXBM(18, 0, 9, 14, Point);//显示地标
   u8g2.setFont(u8g2_font_helvR12_tf);
   u8g2.setCursor(30, 0);
   u8g2.print(city);//显示城市名称
-
   showIcon(today.code, 12, 21);//显示今天天气图标
   showIcon(tomorrow.code, 54, 21);//显示明天天气图标
   showIcon(tomorrow2.code, 96, 21);//显示后天天气图标
-
   u8g2.setFont(u8g2_font_helvR08_tf);
   u8g2.setCursor(8, 43);
   u8g2.print(String(today.temp_low) + "~" + String(today.temp_high));//显示今天最低温度和最高温度
@@ -255,6 +253,21 @@ void dailyDisplay()//显示天气预报
   u8g2.print(tomorrow2.date);//显示后天日期
   u8g2.sendBuffer();
 }
+void Display()//显示当前时间和气温
+{
+  Serial.println(show_daily_count);
+  if (show_daily_count > 0 && show_daily_count < 5) {
+    dailyDisplay();
+  }
+  else
+  {
+    clockDisplay();
+  }
+}
+void displaySwitch()//中断函数
+{
+  show_daily_count = 1;
+}
 BLYNK_CONNECTED() {
   rtc.begin();//连上后同步时间
 }
@@ -263,12 +276,12 @@ void setup()
 {
   Serial.begin(9600);
   u8g2.begin();
- // u8g2.setDisplayRotation(U8G2_R2);//调整屏幕显示方向
+  // u8g2.setDisplayRotation(U8G2_R2);//调整屏幕显示方向
   Blynk.begin(auth, ssid, pass);//自建服务器ip模式
   Blynk.virtualWrite(V2, "https://" + host + "/v3/weather/daily.json?key=" + APIKEY + "&location=" + city + "&language=en&unit=c&start=0&days=5");
   setSyncInterval(10 * 60); // 设置同步间隔时间，10分钟
-  attachInterrupt(digitalPinToInterrupt(0), dailyDisplay, RISING);
-  timer.setInterval(1000L, nowDisplay);//每隔1s，运行clockDisplay，显示时间和温湿度
+  attachInterrupt(digitalPinToInterrupt(0), displaySwitch, RISING);
+  timer.setInterval(1000L, Display);//每隔1s，运行clockDisplay，显示时间和温湿度
   Humidity = dht.readHumidity();
   Temperature = dht.readTemperature(); //摄氏度
 }
