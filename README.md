@@ -5,6 +5,7 @@
 
 打印两个模型，作为气象站的外壳。
 
+[3D模型](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/3d.jpg)
 Station_Box_Plate.stl
 
 Station_Box_with_Button_Hole.stl
