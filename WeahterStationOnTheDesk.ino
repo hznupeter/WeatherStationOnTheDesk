@@ -20,6 +20,9 @@ char auth[] = "4c77138d712c48d7a6f922cf*****";//授权码
 char ssid[] = "Maker Space";//wifi名称
 char pass[] = "20140811";//wifi密码
 =======
+char ssid[] = "ssid";//wifi名称
+char pass[] = "pass";//wifi密码
+>>>>>>> b048ec03036484704ad4d263f888abe5283f2f35
 String host = "api.seniverse.com";
 String APIKEY = "wactucc9u*****"; //心知天气API
 String city = "Hangzhou";
