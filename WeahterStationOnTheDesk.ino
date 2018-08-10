@@ -16,8 +16,10 @@
 DHT dht(DHTPIN, DHTTYPE);
 U8G2_SSD1306_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, /* clock=*/ SCL, /* data=*/ SDA, /* reset=*/ U8X8_PIN_NONE);
 char auth[] = "4c77138d712c48d7a6f922cf*****";//授权码
+<<<<<<< HEAD
 char ssid[] = "Maker Space";//wifi名称
 char pass[] = "20140811";//wifi密码
+=======
 String host = "api.seniverse.com";
 String APIKEY = "wactucc9u*****"; //心知天气API
 String city = "Hangzhou";
