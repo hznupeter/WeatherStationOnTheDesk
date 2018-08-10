@@ -5,7 +5,8 @@
 
 打印两个模型，作为气象站的外壳。
 
-![运行命令](https://gitee.com/uploads/images/2018/0630/171420_e4d0de5c_359509.png "屏幕截图.png")
+![3D模型](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/3d.jpg "3D模型")
+
 Station_Box_Plate.stl
 
 Station_Box_with_Button_Hole.stl
@@ -13,6 +14,10 @@ Station_Box_with_Button_Hole.stl
 ### 程序思路
 
 * 利用Blynk做程序框架
+
+![添加RTC组件](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/add_rtc.png "添加RTC组件")
+
+![webhook](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/webhook.png "webhook")
 
 * 从Blynk获取时间
 
@@ -24,6 +29,9 @@ Station_Box_with_Button_Hole.stl
 
 电路图
 
+![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/line.png "电路图")
+
 实物连接图
+
 
 
