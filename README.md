@@ -33,5 +33,14 @@ Station_Box_with_Button_Hole.stl
 
 实物连接图
 
+![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/7.jpg "电路图")
 
+![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/8.jpg "电路图")
 
+![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/9.jpg "电路图")
+
+![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/10.jpg "电路图")
+
+![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/11.jpg "电路图")
+
+![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/12.jpg "电路图")
