@@ -5,7 +5,7 @@
 
 打印两个模型，作为气象站的外壳。
 
-![3D模型](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/3d.jpg "3D模型")
+![3D模型](images/3d.jpg "3D模型")
 
 Station_Box_Plate.stl
 
@@ -17,7 +17,7 @@ Station_Box_with_Button_Hole.stl
 
 ![添加RTC组件](images/add_rtc.png "添加RTC组件")
 
-![webhook](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/webhook.png "webhook")
+![webhook](images/webhook.png "webhook")
 
 * 从Blynk获取时间
 
@@ -29,22 +29,22 @@ Station_Box_with_Button_Hole.stl
 
 电路图
 
-![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/line.png "电路图")
+![电路图](images/line.png "电路图")
 
 实物连接图
 
-![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/7.jpg "电路图")
+![电路图](images/7.jpg "电路图")
 
-![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/8.jpg "电路图")
+![电路图](images/8.jpg "电路图")
 
-![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/9.jpg "电路图")
+![电路图](images/9.jpg "电路图")
 
-![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/10.jpg "电路图")
+![电路图](images/10.jpg "电路图")
 
-![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/11.jpg "电路图")
+![电路图](images/11.jpg "电路图")
 
-![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/12.jpg "电路图")
+![电路图](images/12.jpg "电路图")
 
-![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/13.jpg "电路图")
+![电路图](images/13.jpg "电路图")
 
-![电路图](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/14.jpg "电路图")
+![电路图](images/14.jpg "电路图")
