@@ -15,7 +15,7 @@ Station_Box_with_Button_Hole.stl
 
 * 利用Blynk做程序框架
 
-![添加RTC组件](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/add_rtc.png "添加RTC组件")
+![添加RTC组件](images/add_rtc.png "添加RTC组件")
 
 ![webhook](https://github.com/hznupeter/WeatherStationOnTheDesk/raw/master/images/webhook.png "webhook")
 
